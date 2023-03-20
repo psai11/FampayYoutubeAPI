@@ -13,6 +13,20 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
+from datetime import datetime
+CELERY_BEAT_SCHEDULE = { # scheduler configuration 
+    'Task_one_schedule' : {  # whatever the name you want 
+        'task': 'API.tasks.task_one', # name of task with path
+        'schedule': crontab(), # crontab() runs the tasks every minute
+    },
+    'Task_two_schedule' : {  # whatever the name you want 
+        'task': 'API.tasks.task_two', # name of task with path
+        'schedule': 30, # 30 runs this task every 30 seconds
+        'args' : {datetime.now()} # arguments for the task
+    },
+}
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,6 +150,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Celery settings
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+# # Celery settings
+# CELERY_BROKER_URL = "redis://localhost:6379"
+# CELERY_RESULT_BACKEND = "redis://localhost:6379"
