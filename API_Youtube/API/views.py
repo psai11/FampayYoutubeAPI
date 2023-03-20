@@ -23,7 +23,7 @@ class RunFetchCommand(TemplateView):
 def fetch_new_posts(request):
     try:
         getnewposts()
-        return HttpResponse("New videos are being fetched! Check the python console for detailed logs.")
+        # return HttpResponse("New videos are being fetched! Check the python console for detailed logs.")
     except:
         return HttpResponse("Some error encountered")
 

@@ -23,8 +23,8 @@ from API import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('new/',views.fetch_new_posts),
-    path('run/',views.RunFetchCommand.as_view(), name='fetch-new-posts'), 
+    # path('new/',views.fetch_new_posts),
+    # path('run/',views.RunFetchCommand.as_view(), name='fetch-new-posts'), 
     # path('post-json/', views.post_json, name='posts-json-view'),                    
     path('',views.VideoList.as_view()),         
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
